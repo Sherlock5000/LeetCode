@@ -1,0 +1,15 @@
+class Solution:
+    def fib(self, N):
+        """
+        :type N: int
+        :rtype: int
+        """
+        fib = []
+        for i in range(N + 1):
+            if i == 0:
+                fib.append(0)
+            elif i == 1:
+                fib.append(1)
+            elif i > 1:
+                fib.append(fib[i - 1] + fib[i - 2])
+        return fib[N]
