@@ -1,0 +1,14 @@
+class Solution:
+    def transpose(self, A):
+        """
+        :type A: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        C = []
+        i, j = 0, 0
+        for j in range(len(A[i])):
+            B = []
+            for i in range(len(A)):
+                B.append(A[i][j])
+            C.append(B)
+        return C
