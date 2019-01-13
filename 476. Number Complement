@@ -1,0 +1,12 @@
+class Solution:
+    def findComplement(self, num):
+        """
+        :type num: int
+        :rtype: int
+        """
+        a = bin(num)[2:]
+        b = a.replace('1', '%temp%').replace('0', '1').replace('%temp%', '0')
+        return int(b, 2)
+        # following line of code is equivalent to those above
+    
+        # return int(bin(num)[2:].replace('1', '%temp%').replace('0', '1').replace('%temp%', '0'), 2)
