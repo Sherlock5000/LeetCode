@@ -1,0 +1,25 @@
+class Solution:
+    def reverse(self, x):
+        """
+        :type x: int
+        :rtype: int
+        """
+        rev = 0
+        if x<0:
+            flag = True
+            x = -x
+        else:
+            flag = False
+        while x != 0:
+            y = x % 10
+            x = x - y
+            x = x / 10
+            rev = rev * 10 + y
+
+        if rev > (2 ** 31) - 1 or rev < -(2 ** 31):
+            return 0
+        else:
+            if flag == True:
+                return -1* int(rev)
+            else:
+                return int(rev)
