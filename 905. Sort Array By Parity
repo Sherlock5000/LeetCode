@@ -1,0 +1,15 @@
+class Solution:
+    def sortArrayByParity(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        even = []
+        odd = []
+        for i in range(len(A)):
+            if A[i] / 2 != A[i] // 2:
+                odd.append(A[i])
+            elif A[i] / 2 == A[i] // 2:
+                even.append(A[i])
+        return even + odd
+        
