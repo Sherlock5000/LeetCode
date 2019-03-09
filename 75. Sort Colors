@@ -1,0 +1,17 @@
+class Solution {
+    public void sortColors(int[] nums) {
+        
+        for(int unsortedIndex = 1; unsortedIndex < nums.length; unsortedIndex++) {
+            
+            int newElement = nums[unsortedIndex];
+            
+            int i;
+            
+            for(i = unsortedIndex; i > 0 && nums[i - 1] > newElement; i--) {
+                
+                nums[i] = nums[i - 1];
+            }
+            nums[i] = newElement;
+        }      
+    }
+}
