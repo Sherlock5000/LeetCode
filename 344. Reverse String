@@ -1,3 +1,4 @@
+# Python Solution
 class Solution:
     def reverseString(self, s):
         """
@@ -5,3 +6,19 @@ class Solution:
         :rtype: str
         """
         return s[::-1]
+
+// Java Solution
+class Solution {
+    public void reverseString(char[] s) {
+        int left = 0;
+        int right = s.length - 1;
+        
+        while(left < right) {
+            char temp = s[left];
+            s[left] = s[right];
+            s[right] = temp;
+            left++;
+            right--;
+        }
+    }
+}
