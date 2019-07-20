@@ -1,0 +1,15 @@
+class Solution:
+    def sumOfDigits(self, A: List[int]) -> int:
+        minElement = min(A)
+        reqsum = 0
+        
+        while minElement != 0:
+            first = minElement % 10
+            reqsum += first
+            minElement = (minElement - first) / 10
+            
+        if reqsum % 2 == 0:
+            return 1
+        else:
+            return 0
+        
