@@ -1,0 +1,11 @@
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        sum1 = 0
+        sum2 = 0
+        for element in nums:
+            sum1 += element
+            
+        for element in range(0, len(nums)):
+            sum2 += element
+            
+        return len(nums) - sum1 + sum2
