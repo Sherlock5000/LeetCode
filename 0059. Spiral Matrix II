@@ -1,0 +1,51 @@
+class Solution:
+    def generateMatrix(self, n: int) -> List[List[int]]:
+        array = []
+        for element in range(1, (n * n) + 1):
+            array.append(element)
+            
+        matrix = [[0] * n for _ in range(0, n)]
+        
+        left = 0
+        right = len(matrix[0]) - 1
+        top = 0
+        bottom = len(matrix) - 1
+        j = 0
+        
+        while left < right and top < bottom:
+            for i in range(left, right):
+                matrix[top][i] = array[j]
+                j += 1
+                
+            for i in range(top, bottom):
+                matrix[i][right] = array[j]
+                j += 1
+                
+            for i in range(right, left, -1):
+                matrix[bottom][i] = array[j]
+                j += 1
+                
+            for i in range(bottom, top, -1):
+                matrix[i][left] = array[j]
+                j += 1
+                
+            left += 1
+            right -= 1
+            top += 1
+            bottom -= 1
+            
+        if left == right and top == bottom:
+            matrix[top][left] = array[j]
+            j += 1
+            
+        elif left == right:
+            for i in range(top, bottom + 1):
+                matrix[i][left] = array[j]
+                j += 1
+                
+        elif top == bottom:
+            for i in range(left, right + 1):
+                matrix[top][i] = array[j]
+                j += 1
+                
+        return matrix
