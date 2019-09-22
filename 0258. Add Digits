@@ -1,5 +1,34 @@
+# O(1) time and O(1) space solution
 class Solution:
     def addDigits(self, num: int) -> int:
         if num == 0:
             return 0
         return (num - 1) % 9 + 1
+
+# Iterative Solution
+class Solution:
+    def addDigits(self, num: int) -> int:
+        if num < 0:
+            return None
+        
+        if num < 10:
+            return num
+        
+        flag = True
+        
+        while flag:
+            total = 0
+            
+            while num != 0:
+                rem = num % 10
+                total += rem
+                num = int((num - rem) / 10)
+                
+            if total > 9:
+                flag = True
+                num = total
+                
+            else:
+                flag = False
+            
+        return total
