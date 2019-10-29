@@ -1,4 +1,4 @@
-# METHOD 1
+# METHOD 1 (Python)
 
 # Definition for singly-linked list.
 # class ListNode:
@@ -42,3 +42,59 @@ class Solution:
         root.left = self.sortedListToBST(head)
         root.right = self.sortedListToBST(mid.next)
         return root
+
+
+# METHOD 1 (Java)
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public ListNode findMiddle(ListNode head) {
+        ListNode prev = null;
+        ListNode slow = head;
+        ListNode fast = head;
+        
+        while(fast != null && fast.next != null) {
+            prev = slow;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        
+        if(prev != null) {
+            prev.next = null;
+        }
+        
+        return slow;
+    }
+    public TreeNode sortedListToBST(ListNode head) {
+        if(head == null) {
+            return null;
+        }
+        
+        ListNode mid = this.findMiddle(head);
+        TreeNode root = new TreeNode(mid.val);
+        
+        if(head == mid) {
+            return root;
+        }
+        
+        root.left = this.sortedListToBST(head);
+        root.right = this.sortedListToBST(mid.next);
+        return root;
+    }
+}
