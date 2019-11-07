@@ -1,3 +1,7 @@
+# Solution 1
+# Time complexity: O(mlogn)
+# Space complexity: O(1)
+
 class Solution:
     def searchMatrix(self, matrix, target):
         """
@@ -27,4 +31,39 @@ class Solution:
                 elif matrix[i][mid] < target:
                     left = mid + 1
                         
+        return False
+
+# Solution 2
+# Time complexity: O(m + n)
+# Space complexity: O(1)
+
+class Solution:
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        if not matrix or len(matrix) == 0 or matrix == [[]]:
+            return False
+        
+        if target < matrix[0][0] or target > matrix[-1][-1]:
+            return False
+        
+        height = len(matrix)
+        width = len(matrix[0])
+        
+        row = height - 1
+        col = 0
+        
+        while col < width and row >= 0:
+            if target < matrix[row][col]:
+                row -= 1
+                
+            elif target > matrix[row][col]:
+                col += 1
+                
+            else:
+                return True
+            
         return False
