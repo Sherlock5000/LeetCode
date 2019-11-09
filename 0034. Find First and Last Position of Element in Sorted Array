@@ -1,0 +1,35 @@
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        if not nums or len(nums) == 0:
+            return [-1, -1]
+        
+        first = self.binarySearch(nums, target, 0, len(nums) - 1, True)
+        last = self.binarySearch(nums, target, 0, len(nums) - 1, False)
+        
+        return [first, last]
+    
+    def binarySearch(self, arr, target, low, high, findFirst):
+        if high < low:
+            return -1
+        
+        mid = (low + high) //2
+        
+        if findFirst:
+            if (mid == 0 or target > arr[mid - 1]) and target == arr[mid]:
+                return mid
+            
+            elif target > arr[mid]:
+                return self.binarySearch(arr, target, mid + 1, high, findFirst)
+            
+            else:
+                return self.binarySearch(arr, target, low, mid - 1, findFirst)
+            
+        else:
+            if (mid == len(arr) - 1 or target < arr[mid + 1]) and target == arr[mid]:
+                return mid
+            
+            elif target < arr[mid]:
+                return self.binarySearch(arr, target, low, mid - 1, findFirst)
+            
+            else:
+                return self.binarySearch(arr, target, mid + 1, high, findFirst)
