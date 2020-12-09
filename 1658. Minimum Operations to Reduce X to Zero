@@ -1,0 +1,32 @@
+class Solution {
+    public int minOperations(int[] nums, int x) {
+        int total = 0;
+        int n = nums.length;
+        
+        for(int i = 0; i < n; i++) {
+            total += nums[i];
+        }
+        
+        int maxLength = -1;
+        int compSum = 0;
+        int left = 0;
+        
+        for(int right = 0; right < n; right++) {
+            compSum += nums[right];
+            
+            while(compSum > total - x && left <= right) {
+                compSum -= nums[left];
+                left += 1;
+            }
+            
+            if(compSum == total - x) {
+                maxLength = Math.max(maxLength, right - left + 1);
+            }
+        }
+        
+        if(maxLength == -1) {
+            return -1;
+        }
+        return n - maxLength;
+    }
+}
