@@ -1,0 +1,16 @@
+class Solution {
+    public int maxProduct(int[] nums) {
+        int localMax = nums[0];
+        int localMin = nums[0];
+        int result = localMax;
+        int n = nums.length;
+        
+        for(int i = 1; i < n; i++) {
+            int tempMax = Math.max(nums[i], Math.max(nums[i] * localMax, nums[i] * localMin));
+            localMin = Math.min(nums[i], Math.min(nums[i] * localMax, nums[i] * localMin));
+            localMax = tempMax;
+            result = Math.max(localMax, result);
+        }
+        return result;
+    }
+}
