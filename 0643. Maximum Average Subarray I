@@ -1,0 +1,33 @@
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        double maxAvg = -Double.MAX_VALUE;
+        int i = 0;
+        int j = k - 1;
+        int n = nums.length;
+        double localSum = 0.0;
+        
+        while(i < n && j < n) {
+            
+            if(i == 0) {
+                for(int num = i; num <= j; num++) {
+                    localSum += nums[num];
+                }
+            }
+            
+            if(i > 0) {
+                localSum -= nums[i - 1];
+                localSum += nums[j];
+            }
+            
+            double localAvg = (double) localSum / k;
+            
+            if(localAvg > maxAvg) {
+                maxAvg = localAvg;
+            }
+            
+            i++;
+            j++;
+        }
+        return maxAvg;
+    }
+}
